@@ -71,6 +71,15 @@ class BaseShape(object):
         return False
 
     @property
+    def has_picture(self):
+        """
+        |True| if this shape is a graphic frame containing a picture object.
+        |False| otherwise. When |True|, the picture object can be accessed
+        using the ``.image`` property.
+        """
+        return hasattr(self, 'image')
+
+    @property
     def has_table(self):
         """
         |True| if this shape is a graphic frame containing a table object.
