@@ -16,7 +16,7 @@ from pptx.shapes.shapetree import (
 )
 from pptx.shared import ElementProxy, ParentedElementProxy, PartElementProxy
 from pptx.util import lazyproperty
-
+from pptx.parts import image
 
 class _BaseSlide(PartElementProxy):
     """Base class for slide objects, including masters, layouts and notes."""
@@ -238,6 +238,12 @@ class Slide(_BaseSlide):
         |SlideLayout| object this slide inherits appearance from.
         """
         return self.part.slide_layout
+
+    def replace_picture(self, picture, new_picture):
+        new_picture = image.Image.from_file(new_picture)
+        rId = picture._element.blip_rId
+        picture_part = self.part.related_part(rId)
+        picture_part.blob = new_picture._blob
 
 
 class Slides(ParentedElementProxy):
