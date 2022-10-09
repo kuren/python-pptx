@@ -301,10 +301,6 @@ class Shape(BaseShape):
             raise ValueError("shape is not an auto shape")
         return self._sp.prst
 
-    @auto_shape_type.setter
-    def auto_shape_type(self, value):
-        self._sp.prst = value
-
     @lazyproperty
     def fill(self):
         """
