@@ -75,6 +75,10 @@ class Chart(PartElementProxy):
         """
         return ChartTitle(self._element.get_or_add_title())
 
+    @chart_title.setter
+    def chart_title(self, value):
+        self.chart_title.text_frame.text = value
+
     @property
     def chart_type(self):
         """Member of :ref:`XlChartType` enumeration specifying type of this chart.
