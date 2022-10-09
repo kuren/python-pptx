@@ -222,6 +222,12 @@ class Slide(_BaseSlide):
         """
         return SlideShapes(self._element.spTree, self)
 
+    def delete_shape(self, id):
+        shape = next((x for x in self.shapes if x.shape_id == id), None)
+
+        if shape is not None:
+            self.shapes.element.remove(shape.element)
+
     @property
     def slide_id(self):
         """
